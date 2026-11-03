@@ -27,7 +27,7 @@ in either repo.
 | `schemaVersion` | Bumped on breaking shape changes |
 | `modules.schema` | The schema as a plain module |
 | `flakeModules.values` | Turns a `values/` directory into the outputs above |
-| `flakeModules.checks` | The value guards (`lib-tests`, `placeholders-only`/`no-placeholders`, `shape-parity`) for a dev partition |
+| `flakeModules.checks` | The value guards (`lib-tests`, `placeholders-only`/`no-placeholders`, `shape-parity`) as flake checks |
 
 ## Schema
 
@@ -124,9 +124,9 @@ A deploy script should also call
 
 ## Development
 
-The repo follows the org flake standard: consumer outputs at the root,
-formatter, checks and docs in the `dev` partition (inputs in
-`dev/flake.nix`, locked in `dev/flake.lock`), and the devenv CLI shell.
+The repo follows the org flake standard: one `org-pkgs` input whose
+`flakeModules.dev` brings the formatter, checks, docs and slides (no dev
+inputs, no dev partition), and the devenv CLI shell.
 Needs Nix and devenv.
 
 ```sh

@@ -7,14 +7,13 @@ must keep the same output shape, so a consumer can swap one for the other
 with `--override-input`.
 
 ## Layout
-- `flake.nix`: consumer-facing inputs (all follow external-systems/pkgs) and the dev partition wiring.
+- `flake.nix`: inputs (all follow external-systems/pkgs); imports `org-pkgs.flakeModules.dev` (treefmt, docs and slides, lock-sync), `flakeModules/values.nix`, the guards and the docs settings. No dev partition.
 - `flakeModules/values.nix`: turns `values/` into the `values`, `lib`, `modules.schema`, `schemaVersion` and `flakeModules` outputs. secrets imports it as `flakeModules.values`.
 - `flakeModules/checks.nix`: the value guards; secrets imports it as `flakeModules.checks`.
 - `schema/`, `lib/`: the schema module and pure helpers (`lib/tests.nix`: eval tests).
 - `values/`: placeholders only (RFC 5737/3849/7042/2606 ranges, all-zero Storage Box ids).
-- `dev/flake.nix` + `dev/flake.lock`: dev-only inputs. `dev/flake-module.nix`: the dev partition (formatter, checks, docs).
+- `documentation/`: MkDocs site (`docs/*.md`) and deck (`slides/slides.md`); `flake-module.nix` holds the `docs.*` settings (pkgs flakeModules.docs).
 - `devenv.yaml` + `devenv.lock` + `devenv.nix`: the dev shell. The org shell comes from external-systems/pkgs (`org-pkgs/devenv` in devenv.yaml).
-- `documentation/`: MkDocs site (`docs/`) and reveal.js deck (`slides/`).
 
 ## Tool loop
 - The shell is devenv. If `DEVENV_ROOT` is unset, run commands with `devenv shell -- <cmd>`.
@@ -24,7 +23,7 @@ with `--override-input`.
 
 ## Rules
 - Load the `nix-style` skill before editing any `.nix` file.
-- Dev-only inputs go in `dev/flake.nix`, never `flake.nix`.
+- No dev-only inputs: formatting and docs come from org-pkgs (nix-style skill).
 - Never put a real value here: `checks.placeholders-only` fails on anything outside the documentation ranges.
 - A new host, link, network, domain, port or storage box lands here first, then in secrets (`checks.shape-parity`).
 - Work on a branch and open a PR. Never push to `main`.
