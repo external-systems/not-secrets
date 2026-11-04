@@ -1,5 +1,8 @@
 # not-secrets
 
+[![license](https://img.shields.io/github/license/external-systems/not-secrets)](https://github.com/external-systems/not-secrets/blob/main/LICENSE)
+[![built with Nix](https://img.shields.io/badge/built_with-Nix-5277C3?logo=nixos&logoColor=white)](https://nixos.org)
+
 Public placeholder values for External Systems fleets. This flake owns the
 schema; [`external-systems/secrets`](https://github.com/external-systems/secrets)
 (private) imports it and supplies the real values. Both expose the same

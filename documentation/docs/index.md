@@ -1,5 +1,8 @@
 # not-secrets
 
+[![license](https://img.shields.io/github/license/external-systems/not-secrets)](https://github.com/external-systems/not-secrets/blob/main/LICENSE)
+[![built with Nix](https://img.shields.io/badge/built_with-Nix-5277C3?logo=nixos&logoColor=white)](https://nixos.org)
+
 Public placeholder values for External Systems fleets, and the schema,
 lib and guard checks that the private `external-systems/secrets` reuses.
 Both flakes expose the same outputs, so a consumer pins this one and swaps
