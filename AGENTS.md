@@ -7,7 +7,7 @@ must keep the same output shape, so a consumer can swap one for the other
 with `--override-input`.
 
 ## Layout
-- `flake.nix`: inputs (all follow external-systems/pkgs); imports `org-pkgs.flakeModules.dev` (treefmt, docs and slides, lock-sync), `flakeModules/values.nix`, the guards and the docs settings. No dev partition.
+- `flake.nix`: inputs (all follow external-systems/pkgs); imports `org-pkgs.flakeModules.default` (treefmt, docs and slides, lock-sync), `flakeModules/values.nix`, the guards and the docs settings. No dev partition.
 - `flakeModules/values.nix`: turns `values/` into the `values`, `lib`, `modules.schema`, `schemaVersion` and `flakeModules` outputs. secrets imports it as `flakeModules.values`.
 - `flakeModules/checks.nix`: the value guards; secrets imports it as `flakeModules.checks`.
 - `schema/`, `lib/`: the schema module and pure helpers (`lib/tests.nix`: eval tests).

@@ -128,7 +128,7 @@ A deploy script should also call
 ## Development
 
 The repo follows the org flake standard: one `org-pkgs` input whose
-`flakeModules.dev` brings the formatter, checks, docs and slides (no dev
+`flakeModules.default` brings the formatter, checks, docs and slides (no dev
 inputs, no dev partition), and the devenv CLI shell.
 Needs Nix and devenv.
 

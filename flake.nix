@@ -25,7 +25,7 @@
       imports = [
         # treefmt, docs + slides, lock-sync: everything from pkgs, so this
         # flake has no dev inputs and no dev partition.
-        inputs.org-pkgs.flakeModules.dev
+        inputs.org-pkgs.flakeModules.default
         ./flakeModules/values.nix
         # The value guards (lib-tests, placeholders-only, ...).
         ./flakeModules/checks.nix
