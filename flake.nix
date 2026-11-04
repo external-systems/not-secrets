@@ -23,29 +23,18 @@
       ];
 
       imports = [
-        inputs.flake-parts.flakeModules.partitions
+        # treefmt, docs + slides, lock-sync: everything from pkgs, so this
+        # flake has no dev inputs and no dev partition.
+        inputs.org-pkgs.flakeModules.default
         ./flakeModules/values.nix
+        # The value guards (lib-tests, placeholders-only, ...).
+        ./flakeModules/checks.nix
+        ./documentation/flake-module.nix
       ];
 
       values = {
         dir = ./values;
         placeholder = true;
-      };
-
-      # Apps, checks, the formatter and docs are evaluated only on demand;
-      # a consumer reading `values` never fetches dev/flake.nix's inputs.
-      # The dev shell is devenv (devenv.yaml), not a flake output.
-      partitionedAttrs = {
-        apps = "dev";
-        checks = "dev";
-        formatter = "dev";
-        # Docs/slides: `nix build .#documentation` (pkgs flakeModules.dev).
-        legacyPackages = "dev";
-      };
-
-      partitions.dev = {
-        module = ./dev/flake-module.nix;
-        extraInputsFlake = ./dev;
       };
     };
 }

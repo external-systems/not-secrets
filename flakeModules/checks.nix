@@ -1,7 +1,7 @@
 # Value guard checks. Imported by the dev partition of not-secrets and of
 # secrets (`inputs.not-secrets.flakeModules.checks`); a consumer of
 # `values` never evaluates it. Which guard runs follows meta.placeholder.
-# Formatting and lint: checks.treefmt (pkgs flakeModules.dev).
+# Formatting and lint: checks.treefmt (pkgs flakeModules.default).
 {
   inputs,
   lib,

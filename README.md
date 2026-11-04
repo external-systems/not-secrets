@@ -1,5 +1,11 @@
 # not-secrets
 
+[![ci](https://img.shields.io/github/actions/workflow/status/external-systems/not-secrets/ci.yml?branch=main&label=ci&logo=github)](https://github.com/external-systems/not-secrets/actions/workflows/ci.yml)
+[![release](https://img.shields.io/github/v/release/external-systems/not-secrets?label=release&color=d97757)](https://github.com/external-systems/not-secrets/releases/latest)
+[![docs](https://img.shields.io/website?url=https%3A%2F%2Fnot-secrets.external.systems%2F&label=docs&up_message=online&down_message=offline)](https://not-secrets.external.systems/)
+[![license](https://img.shields.io/github/license/external-systems/not-secrets)](https://github.com/external-systems/not-secrets/blob/main/LICENSE)
+[![built with Nix](https://img.shields.io/badge/built_with-Nix-5277C3?logo=nixos&logoColor=white)](https://nixos.org)
+
 Public placeholder values for External Systems fleets. This flake owns the
 schema; [`external-systems/secrets`](https://github.com/external-systems/secrets)
 (private) imports it and supplies the real values. Both expose the same
@@ -27,7 +33,7 @@ in either repo.
 | `schemaVersion` | Bumped on breaking shape changes |
 | `modules.schema` | The schema as a plain module |
 | `flakeModules.values` | Turns a `values/` directory into the outputs above |
-| `flakeModules.checks` | The value guards (`lib-tests`, `placeholders-only`/`no-placeholders`, `shape-parity`) for a dev partition |
+| `flakeModules.checks` | The value guards (`lib-tests`, `placeholders-only`/`no-placeholders`, `shape-parity`) as flake checks |
 
 ## Schema
 
@@ -124,9 +130,9 @@ A deploy script should also call
 
 ## Development
 
-The repo follows the org flake standard: consumer outputs at the root,
-formatter, checks and docs in the `dev` partition (inputs in
-`dev/flake.nix`, locked in `dev/flake.lock`), and the devenv CLI shell.
+The repo follows the org flake standard: one `org-pkgs` input whose
+`flakeModules.default` brings the formatter, checks, docs and slides (no dev
+inputs, no dev partition), and the devenv CLI shell.
 Needs Nix and devenv.
 
 ```sh
