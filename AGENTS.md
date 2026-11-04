@@ -14,6 +14,7 @@ with `--override-input`.
 - `values/`: placeholders only (RFC 5737/3849/7042/2606 ranges, all-zero Storage Box ids).
 - `documentation/`: MkDocs site (`docs/*.md`) and deck (`slides/slides.md`); `flake-module.nix` holds the `docs.*` settings (pkgs flakeModules.docs).
 - `devenv.yaml` + `devenv.lock` + `devenv.nix`: the dev shell. The org shell comes from external-systems/pkgs (`org-pkgs/devenv` in devenv.yaml).
+- `.github/workflows/ci.yml`: the org CI, calling external-systems/pkgs `org-ci.yml`: `nix flake check` on PRs (`ci / flake-check`); on main pushes the Pages deploy and the `0.<minor>.<commits>` release. `.github/rulesets/default.json`: the org branch ruleset. Change CI only in pkgs, never here.
 
 ## Tool loop
 - The shell is devenv. If `DEVENV_ROOT` is unset, run commands with `devenv shell -- <cmd>`.
